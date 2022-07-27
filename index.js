@@ -15,7 +15,7 @@ SlackTestReportNotification.prototype.sendReportNotification = function(reportJs
     const reportConfig = JSON.parse(jsonString);
 
     // Only sends notification if something fails
-    // if (reportConfig.stats.failures === 0) return;
+    if (reportConfig.stats.failures === 0) return;
 
     const alertColor = "#bd2020";
     const resultMessage = "FAILURE";
