@@ -14,11 +14,8 @@ SlackTestReportNotification.prototype.sendReportNotification = function(reportJs
     const jsonString = fs.readFileSync(resolvedPath);
     const reportConfig = JSON.parse(jsonString);
 
-    console.log(reportConfig)
-    console.log("@@@@@@@@@@@@@@@@@@@@@@@'")
-    console.log(this.slack)
     // Only sends notification if something fails
-    if (reportConfig.stats.failures === 0) return;
+    // if (reportConfig.stats.failures === 0) return;
 
     const alertColor = "#bd2020";
     const resultMessage = "FAILURE";
@@ -29,13 +26,6 @@ SlackTestReportNotification.prototype.sendReportNotification = function(reportJs
     duration.setSeconds(reportConfig.stats.duration);
     var hhmmssDateFormat = duration.toISOString().substr(11, 8);
 
-    this.slack.alert({
-        channel: '#myCustomChannelName',
-        icon_url: 'http://example.com/my-icon.png',
-        text: 'Here is my notification',
-        unfurl_links: 1,
-        username: 'Jimmy'
-      })
     this.slack.alert({
         attachments: [
             {
