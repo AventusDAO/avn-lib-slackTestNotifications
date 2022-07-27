@@ -14,6 +14,9 @@ SlackTestReportNotification.prototype.sendReportNotification = function(reportJs
     const jsonString = fs.readFileSync(resolvedPath);
     const reportConfig = JSON.parse(jsonString);
 
+    console.log(reportConfig)
+    console.log("@@@@@@@@@@@@@@@@@@@@@@@'")
+    console.log(this.slack)
     // Only sends notification if something fails
     if (reportConfig.stats.failures === 0) return;
 
