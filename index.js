@@ -30,6 +30,13 @@ SlackTestReportNotification.prototype.sendReportNotification = function(reportJs
     var hhmmssDateFormat = duration.toISOString().substr(11, 8);
 
     this.slack.alert({
+        channel: '#myCustomChannelName',
+        icon_url: 'http://example.com/my-icon.png',
+        text: 'Here is my notification',
+        unfurl_links: 1,
+        username: 'Jimmy'
+      })
+    this.slack.alert({
         attachments: [
             {
                 color: alertColor,
