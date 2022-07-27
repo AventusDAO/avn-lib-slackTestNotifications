@@ -9,12 +9,13 @@ function SlackTestReportNotification(slackUrl) {
 }
 
 SlackTestReportNotification.prototype.sendReportNotification = function(reportJsonFilePath, testName, chain) {
-    // Only sends notification if something fails
-    if (reportConfig.stats.failures === 0) return;
 
     const resolvedPath = path.resolve(__dirname, reportJsonFilePath);
     const jsonString = fs.readFileSync(resolvedPath);
     const reportConfig = JSON.parse(jsonString);
+
+    // Only sends notification if something fails
+    if (reportConfig.stats.failures === 0) return;
 
     const alertColor = "#bd2020";
     const resultMessage = "FAILURE";
