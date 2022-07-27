@@ -1,0 +1,11 @@
+{
+  "name": "avn-strn",
+  "version": "1.0.0",
+  "description": "Slack test reports notifications, specific template",
+  "main": "index.js",
+  "dependencies": {
+    "slack-notify": "^2.0.2"
+  },
+  "author": "",
+  "license": "ISC"
+}
