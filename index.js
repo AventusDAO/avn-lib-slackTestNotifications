@@ -19,6 +19,10 @@ SlackTestReportNotification.prototype.sendReportNotification = function(reportJs
 
     const alertColor = "#bd2020";
     const resultMessage = "FAILURE";
+
+    console.log(reportConfig.stats.start)
+    console.log(reportConfig.stats.end)
+
     const startDate = new Date(reportConfig.stats.start);
     const endDate = new Date(reportConfig.stats.end);
 
