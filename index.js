@@ -26,6 +26,9 @@ SlackTestReportNotification.prototype.sendReportNotification = function(reportJs
     const startDate = new Date(reportConfig.stats.start);
     const endDate = new Date(reportConfig.stats.end);
 
+    console.log(startDate.toString())
+    console.log(endDate.toString())
+
     const diffTime = Math.abs(endDate - startDate);
 
     var duration = new Date(null);
