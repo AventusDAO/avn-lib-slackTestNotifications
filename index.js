@@ -22,9 +22,13 @@ SlackTestReportNotification.prototype.sendReportNotification = function(reportJs
     const startDate = new Date(reportConfig.stats.start);
     const endDate = new Date(reportConfig.stats.end);
 
+    const diffTime = Math.abs(endDate - startDate);
+
     var duration = new Date(null);
-    duration.setSeconds(reportConfig.stats.duration);
+    duration.setMilliseconds(diffTime);
     var hhmmssDateFormat = duration.toISOString().substr(11, 8);
+
+
 
     this.slack.alert({
         attachments: [
