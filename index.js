@@ -27,6 +27,7 @@ SlackTestReportNotification.prototype.sendReportNotification = function(reportJs
     const endDate = new Date(reportConfig.stats.end);
 
     let stringStartDate = reportConfig.stats.start.split('T').pop().split('.')[0];
+    let stringEndDate = reportConfig.stats.end.split('T').pop().split('.')[0];
     console.log(stringStartDate)
     // console.log(endDate.toString())
 
@@ -35,8 +36,6 @@ SlackTestReportNotification.prototype.sendReportNotification = function(reportJs
     var duration = new Date(null);
     duration.setMilliseconds(diffTime);
     var hhmmssDateFormat = duration.toISOString().substr(11, 8);
-
-
 
     this.slack.alert({
         attachments: [
@@ -68,11 +67,11 @@ SlackTestReportNotification.prototype.sendReportNotification = function(reportJs
                         fields: [
                             {
                                 type: "mrkdwn",
-                                text: `*Start_time:*\n${startDate.getHours()}:${startDate.getMinutes()}:${startDate.getSeconds()}`
+                                text: `*Start_time:*\n${stringStartDate}`
                             },
                             {
                                 type: "mrkdwn",
-                                text: `*End_time:*\n${endDate.getHours()}:${endDate.getMinutes()}:${endDate.getSeconds()}`
+                                text: `*End_time:*\n${stringEndDate}`
                             }
                         ]
                     }
