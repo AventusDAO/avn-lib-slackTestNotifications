@@ -31,7 +31,8 @@ SlackTestReportNotification.prototype.sendReportNotification = function(reportJs
     console.log(stringStartDate)
     // console.log(endDate.toString())
 
-    const diffTime = Math.abs(endDate - startDate);
+    // const diffTime = Math.abs(endDate - startDate);
+    const diffTime = endDate.getTime() - startDate.getTime();
 
     var duration = new Date(null);
     duration.setMilliseconds(diffTime);
