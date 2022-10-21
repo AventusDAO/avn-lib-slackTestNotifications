@@ -8,7 +8,7 @@ function SlackTestReportNotification(slackUrl) {
   this.slack = SlackNotify(slackUrl);
 }
 
-SlackTestReportNotification.prototype.sendReportNotification = function(reportJsonFilePath, testName, chain) {
+SlackTestReportNotification.prototype.sendReportNotification = function(reportJsonFilePath, testName, chain, reportFileId) {
 
     const resolvedPath = path.resolve(__dirname, reportJsonFilePath);
     const jsonString = fs.readFileSync(resolvedPath);
@@ -97,7 +97,7 @@ SlackTestReportNotification.prototype.sendReportNotification = function(reportJs
                     },
                     {
                         title: 'Report URL',
-                        value: `https://drive.google.com/file/d/1w7isANCd-khzBnjEvuK_eK2NIi5s8VwC/view`,
+                        value: `https://drive.google.com/file/d/${reportFileId}/view`,
                     }
                 ],
             }
