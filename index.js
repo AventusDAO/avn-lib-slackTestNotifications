@@ -97,7 +97,7 @@ SlackTestReportNotification.prototype.sendReportNotification = function(reportJs
                     },
                     {
                         title: 'Report URL',
-                        value: `https://drive.google.com/file/d/${reportFileId}/view`,
+                        value: `https://drive.google.com/file/d/${reportConfig.fileId}/view`,
                     }
                 ],
             }
