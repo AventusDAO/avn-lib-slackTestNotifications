@@ -98,6 +98,14 @@ SlackTestReportNotification.prototype.sendReportNotification = function(reportJs
                         short: true
                     }
                 ],
+            },
+            {
+                color: alertColor,
+                fields: [
+                    {   title: 'Report URL',
+                        value: `https://drive.google.com/file/d/1w7isANCd-khzBnjEvuK_eK2NIi5s8VwC/view`,
+                    }
+                ],
             }
         ]
     });
