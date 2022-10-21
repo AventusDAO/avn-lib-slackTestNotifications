@@ -8,7 +8,7 @@ function SlackTestReportNotification(slackUrl) {
   this.slack = SlackNotify(slackUrl);
 }
 
-SlackTestReportNotification.prototype.sendReportNotification = function(reportJsonFilePath, testName, chain, reportFileId) {
+SlackTestReportNotification.prototype.sendReportNotification = function(reportJsonFilePath, testName, chain) {
 
     const resolvedPath = path.resolve(__dirname, reportJsonFilePath);
     const jsonString = fs.readFileSync(resolvedPath);
