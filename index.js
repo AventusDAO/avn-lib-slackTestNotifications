@@ -29,9 +29,7 @@ SlackTestReportNotification.prototype.sendReportNotification = function(reportJs
     let stringStartDate = reportConfig.stats.start.split('T').pop().split('.')[0];
     let stringEndDate = reportConfig.stats.end.split('T').pop().split('.')[0];
     console.log(stringStartDate)
-    // console.log(endDate.toString())
 
-    // const diffTime = Math.abs(endDate - startDate);
     const diffTime = endDate.getTime() - startDate.getTime();
 
     var duration = new Date(null);
@@ -96,13 +94,9 @@ SlackTestReportNotification.prototype.sendReportNotification = function(reportJs
                     {   title: 'Failures',
                         value: `${reportConfig.stats.failures}/${reportConfig.stats.tests} - ${getPercentage(reportConfig.stats.failures, reportConfig.stats.tests)}%`,
                         short: true
-                    }
-                ],
-            },
-            {
-                color: alertColor,
-                fields: [
-                    {   title: 'Report URL',
+                    },
+                    {
+                        title: 'Report URL',
                         value: `https://drive.google.com/file/d/1w7isANCd-khzBnjEvuK_eK2NIi5s8VwC/view`,
                     }
                 ],
