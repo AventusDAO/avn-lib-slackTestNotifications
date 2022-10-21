@@ -3,7 +3,7 @@ module.exports = SlackTestReportNotification;
 const fs = require('fs');
 const SlackNotify = require('slack-notify');
 const path = require('path');
-
+const oneSecondInMiliseconds = 1000;
 function SlackTestReportNotification(slackUrl) {
   this.slack = SlackNotify(slackUrl);
 }
@@ -20,20 +20,16 @@ SlackTestReportNotification.prototype.sendReportNotification = function(reportJs
     const alertColor = "#bd2020";
     const resultMessage = "FAILURE";
 
-    console.log(reportConfig.stats.start)
-    console.log(reportConfig.stats.end)
-
     const startDate = new Date(reportConfig.stats.start);
     const endDate = new Date(reportConfig.stats.end);
 
     let stringStartDate = reportConfig.stats.start.split('T').pop().split('.')[0];
     let stringEndDate = reportConfig.stats.end.split('T').pop().split('.')[0];
-    console.log(stringStartDate)
 
     const diffTime = endDate.getTime() - startDate.getTime();
 
     var duration = new Date(null);
-    duration.setMilliseconds(diffTime + 1000);
+    duration.setMilliseconds(diffTime + oneSecondInMiliseconds); // We add one extra seconds to round up the result
     var hhmmssDateFormat = duration.toISOString().substr(11, 8);
 
     this.slack.alert({
