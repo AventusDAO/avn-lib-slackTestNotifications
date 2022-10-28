@@ -3,7 +3,7 @@ module.exports = SlackTestReportNotification;
 const fs = require('fs');
 const SlackNotify = require('slack-notify');
 const path = require('path');
-
+const oneSecondInMiliseconds = 1000;
 function SlackTestReportNotification(slackUrl) {
   this.slack = SlackNotify(slackUrl);
 }
@@ -19,11 +19,17 @@ SlackTestReportNotification.prototype.sendReportNotification = function(reportJs
 
     const alertColor = "#bd2020";
     const resultMessage = "FAILURE";
+
     const startDate = new Date(reportConfig.stats.start);
     const endDate = new Date(reportConfig.stats.end);
 
+    let stringStartDate = reportConfig.stats.start.split('T').pop().split('.')[0];
+    let stringEndDate = reportConfig.stats.end.split('T').pop().split('.')[0];
+
+    const diffTime = endDate.getTime() - startDate.getTime();
+
     var duration = new Date(null);
-    duration.setSeconds(reportConfig.stats.duration);
+    duration.setMilliseconds(diffTime + oneSecondInMiliseconds); // We add one extra second to round up the result
     var hhmmssDateFormat = duration.toISOString().substr(11, 8);
 
     this.slack.alert({
@@ -56,11 +62,11 @@ SlackTestReportNotification.prototype.sendReportNotification = function(reportJs
                         fields: [
                             {
                                 type: "mrkdwn",
-                                text: `*Start_time:*\n${startDate.getHours()}:${startDate.getMinutes()}:${startDate.getSeconds()}`
+                                text: `*Start_time:*\n${stringStartDate}`
                             },
                             {
                                 type: "mrkdwn",
-                                text: `*End_time:*\n${endDate.getHours()}:${endDate.getMinutes()}:${endDate.getSeconds()}`
+                                text: `*End_time:*\n${stringEndDate}`
                             }
                         ]
                     }
@@ -84,6 +90,10 @@ SlackTestReportNotification.prototype.sendReportNotification = function(reportJs
                     {   title: 'Failures',
                         value: `${reportConfig.stats.failures}/${reportConfig.stats.tests} - ${getPercentage(reportConfig.stats.failures, reportConfig.stats.tests)}%`,
                         short: true
+                    },
+                    {
+                        title: 'Report URL',
+                        value: `https://drive.google.com/file/d/${reportConfig.fileId}/view`,
                     }
                 ],
             }
