@@ -104,7 +104,7 @@ SlackTestReportNotification.prototype.sendReportNotification = function (reportJ
 }
 
 function getPercentage(target, total) {
-const percentage = (target * 100) / total;
-return Math.round(percentage * 100) / 100;
+    const percentage = (target * 100) / total;
+    return Math.round(percentage * 100) / 100;
 }
 
