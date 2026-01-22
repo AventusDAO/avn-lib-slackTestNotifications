@@ -1,11 +1,15 @@
 {
-  "name": "avn-strn",
+  "name": "@aventus/avn-slack-test-report",
   "version": "1.0.0",
-  "description": "Slack test reports notifications, specific template",
-  "main": "index.js",
-  "dependencies": {
-    "slack-notify": "^2.0.2"
+  "private": true,
+  "main": "src/index.js",
+  "bin": {
+    "avn-slack-report": "bin/avn-slack-report.js"
   },
-  "author": "",
-  "license": "ISC"
+  "type": "commonjs",
+  "engines": { "node": ">=18" },
+  "dependencies": {
+    "slack-notify": "^2.0.7",
+    "yargs": "^17.7.2"
+  }
 }
